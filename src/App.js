@@ -52,8 +52,8 @@ class Calculator extends React.Component {
       } catch (error) {
         this.setState({input : "Invalid input"});
       }
-    } else if (symbol == '+/-') {
-      if (this.state.input != '') {
+    } else if (symbol === '+/-') {
+      if (this.state.input !== '' && !this.state.input.startsWith('-')) {
         this.setState({input : '-' + this.state.input});
       }
     } else if (symbol === '*' || symbol === '/' || symbol === '+' || symbol === '-') {
@@ -107,9 +107,6 @@ class Calculator extends React.Component {
 
 // This class renders the calculator's input bar
 class InputBar extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {    
     return (
