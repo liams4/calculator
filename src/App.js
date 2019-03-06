@@ -38,13 +38,13 @@ class Calculator extends React.Component {
 
   // Handles button clicking by the user. 
   handleClick(symbol) {
-    if (symbol == 'clear') {
+    if (symbol === 'clear') {
       this.setState({input : ''});
-    } else if (this.state.input == 'Invalid input' || this.state.input == '0') {
+    } else if (this.state.input === 'Invalid input' || this.state.input === '0') {
       this.setState({input : symbol});
-    } else if (symbol == 0 && this.state.input == 0) {
-      this.setState({input : 0});
-    } else if (symbol == '='){
+    } else if (symbol === '0' && this.state.input === '0') {
+      this.setState({input : '0'});
+    } else if (symbol === '='){
       try {
         let answer = eval(this.state.input);  // unsafe code to use in the real world
         answer = Math.round(answer * 1000.0) / 1000; // rounds output to three decimal places
@@ -56,7 +56,7 @@ class Calculator extends React.Component {
       if (this.state.input != '') {
         this.setState({input : '-' + this.state.input});
       }
-    } else if (symbol == '*' || symbol == '/' || symbol == '+' || symbol == '-') {
+    } else if (symbol === '*' || symbol === '/' || symbol === '+' || symbol === '-') {
       this.setState({input : this.state.input + ' ' + symbol + ' '});
     } else {
       this.setState({input : this.state.input + symbol});
