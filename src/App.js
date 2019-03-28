@@ -38,7 +38,6 @@ class Calculator extends React.Component {
 
   // Handles button clicking by the user. 
   handleClick(symbol) {
-    this.setState({calculation : ''});
     if (symbol === 'clear') {
       this.setState({input : ''});
     } else if (symbol === '=') {
