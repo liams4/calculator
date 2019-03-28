@@ -31,33 +31,36 @@ class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input : ' ',
+      input : ''
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
   // Handles button clicking by the user. 
   handleClick(symbol) {
+    this.setState({calculation : ''});
     if (symbol === 'clear') {
       this.setState({input : ''});
-    } else if (this.state.input === 'Invalid input' || this.state.input === '0') {
-      this.setState({input : symbol});
-    } else if (symbol === '0' && this.state.input === '0') {
-      this.setState({input : '0'});
-    } else if (symbol === '='){
+    } else if (symbol === '=') {
       try {
         let answer = eval(this.state.input);  // unsafe code to use in the real world
         answer = Math.round(answer * 1000.0) / 1000; // rounds output to three decimal places
-        this.setState({input : answer});
+        this.setState({input : answer + ''});
       } catch (error) {
-        this.setState({input : "Invalid input"});
+        this.setState({input : 'Invalid input'});
       }
     } else if (symbol === '+/-') {
-      if (this.state.input !== '' && !this.state.input.startsWith('-')) {
-        this.setState({input : '-' + this.state.input});
+      if (this.state.input !== '') {
+          if (this.state.input.startsWith('-')) {
+            this.setState({input : this.state.input.substring(1)});
+          } else if (this.state.input !== '0'){ 
+            this.setState({input : '-' + this.state.input});
+          } 
       }
     } else if (symbol === '*' || symbol === '/' || symbol === '+' || symbol === '-') {
       this.setState({input : this.state.input + ' ' + symbol + ' '});
+    } else if (this.state.input === 'Invalid input' || this.state.input === '0') {
+      this.setState({input : symbol});
     } else {
       this.setState({input : this.state.input + symbol});
     }
@@ -100,6 +103,7 @@ class Calculator extends React.Component {
       <button id="decimal" onClick={() => this.handleClick('.')}>.</button>
       <button id="equals" style = {{borderBottomRightRadius: 4}} onClick={() => this.handleClick('=')}>=</button>
       </div>
+
       </div>
     );
   }
