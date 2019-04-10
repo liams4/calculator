@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// This app renders a basic calculator. 
+// This app renders a basic calculator.
 class App extends Component {
    render () {
     return (
@@ -13,7 +13,7 @@ class App extends Component {
   }
 }
 
-// This class renders a welcome message to the user. 
+// This class renders a welcome message to the user.
 class WelcomeMessage extends Component {
   render() {
     return (
@@ -26,7 +26,7 @@ class WelcomeMessage extends Component {
 }
 
 
-// This class renders the buttons for the calculator and contains all of the methods and functionality. 
+// This class renders the buttons for the calculator and contains all of the methods and functionality.
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
@@ -36,13 +36,16 @@ class Calculator extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // Handles button clicking by the user. 
+  // Handles button clicking by the user.
   handleClick(symbol) {
     if (symbol === 'clear') {
       this.setState({input : ''});
     } else if (symbol === '=') {
       try {
-        let answer = eval(this.state.input);  // unsafe code to use in the real world
+        // eslint-disable-next-line
+        let answer = eval(this.state.input);  // unsafe code to use in the real world. The comment
+                                              // above this line causes a warning message about
+                                              // the eval function to be ignored.
         answer = Math.round(answer * 1000.0) / 1000; // rounds output to three decimal places
         this.setState({input : answer + ''});
       } catch (error) {
@@ -52,9 +55,9 @@ class Calculator extends React.Component {
       if (this.state.input !== '') {
           if (this.state.input.startsWith('-')) {
             this.setState({input : this.state.input.substring(1)});
-          } else if (this.state.input !== '0'){ 
+          } else if (this.state.input !== '0'){
             this.setState({input : '-' + this.state.input});
-          } 
+          }
       }
     } else if (symbol === '*' || symbol === '/' || symbol === '+' || symbol === '-') {
       this.setState({input : this.state.input + ' ' + symbol + ' '});
@@ -65,7 +68,7 @@ class Calculator extends React.Component {
     }
   }
 
-  // Renders the buttons inside of different div elements. 
+  // Renders the buttons inside of different div elements.
   render() {
     return (
       <div className="buttons">
@@ -111,13 +114,13 @@ class Calculator extends React.Component {
 // This class renders the calculator's input bar
 class InputBar extends Component {
 
-  render() {    
+  render() {
     return (
     <div className= "inputBar">
     <div id="display">{this.props.input}</div>
     </div>
     );
   }
-}  
+}
 
 export default App;
