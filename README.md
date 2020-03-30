@@ -1,11 +1,4 @@
 # calculator
-This is a simple calculator web app (similar to the default calculator mobile app that may be on your
-phone) built using JavaScript, React.js, HTML, and CSS.
+This is a very simple calculator web app that I built when teaching myself JavaScript and React. It is similar to the default calculator app that appears on many smartphones.
 
-To run this web app, first make sure that your machine has ___Node.js___ installed. Then, clone
-this repository to your machine and navigate to it. Once inside the repository, run  
-`npm install`  
-which will install necessary dependencies. Finally, run  
-`npm start`  
-and open the web browser of your choice. Navigate to https://localhost:3000 and the web app will be
-running!
+Link to app: https://liams4.github.io/calculator/
